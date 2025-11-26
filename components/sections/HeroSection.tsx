@@ -33,7 +33,7 @@ export default function HeroSection() {
       transition: {
         duration: 3,
         repeat: Infinity,
-        ease: "easeInOut",
+        ease: "easeInOut" as const,
       },
     },
   }
@@ -67,7 +67,7 @@ export default function HeroSection() {
           transition={{
             duration: 8,
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: "easeInOut" as const,
           }}
         />
         <motion.div
@@ -79,7 +79,7 @@ export default function HeroSection() {
           transition={{
             duration: 10,
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: "easeInOut" as const,
           }}
         />
       </div>
@@ -221,7 +221,7 @@ export default function HeroSection() {
                     duration: 3,
                     delay: i * 0.3,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: "easeInOut" as const,
                   }}
                   whileHover={{
                     scale: 1.05,
@@ -238,7 +238,7 @@ export default function HeroSection() {
                       duration: 4,
                       delay: i * 0.5,
                       repeat: Infinity,
-                      ease: "easeInOut",
+                      ease: "easeInOut" as const,
                     }}
                   >
                     {item.icon}
@@ -259,7 +259,7 @@ export default function HeroSection() {
                     duration: 3,
                     delay: i * 0.4,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: "easeInOut" as const,
                   }}
                 />
               </motion.div>
@@ -297,7 +297,7 @@ export default function HeroSection() {
                   transition={{
                     duration: 5,
                     repeat: Infinity,
-                    ease: "linear",
+                    ease: "linear" as const,
                   }}
                   style={{
                     backgroundSize: '200% 200%',
