@@ -315,22 +315,233 @@ export default function HeroSection() {
             ))}
           </motion.div>
 
-          {/* Scroll indicator */}
+          {/* Hologram Effect */}
           <motion.div
-            className="absolute bottom-10 left-1/2 -translate-x-1/2"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.8 }}
+            className="relative mt-16 mx-auto max-w-md"
+            initial={{ opacity: 0, scale: 0.8, y: 50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.5, ease: [0.22, 1, 0.36, 1] as const }}
           >
+            {/* Hologram Container */}
             <motion.div
-              className="flex flex-col items-center gap-2 text-neutral-400 dark:text-neutral-500"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="relative perspective-1000"
+              animate={{
+                rotateY: [0, 5, 0, -5, 0],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             >
-              <span className="text-xs font-medium">Scroll to explore</span>
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
+              {/* Main Hologram Card */}
+              <motion.div
+                className="relative bg-gradient-to-br from-primary-500/10 via-primary-400/5 to-transparent dark:from-primary-400/20 dark:via-primary-500/10 dark:to-transparent backdrop-blur-md border border-primary-400/30 dark:border-primary-300/30 rounded-2xl p-8 overflow-hidden shadow-2xl"
+                animate={{
+                  boxShadow: [
+                    '0 0 20px rgba(14, 165, 233, 0.3)',
+                    '0 0 40px rgba(14, 165, 233, 0.5)',
+                    '0 0 20px rgba(14, 165, 233, 0.3)',
+                  ],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                {/* Scanning lines */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-b from-transparent via-primary-400/20 to-transparent"
+                  animate={{
+                    y: ['-100%', '200%'],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                />
+
+                {/* Grid overlay */}
+                <div
+                  className="absolute inset-0 opacity-20"
+                  style={{
+                    backgroundImage: 'linear-gradient(#0ea5e9 1px, transparent 1px), linear-gradient(90deg, #0ea5e9 1px, transparent 1px)',
+                    backgroundSize: '20px 20px',
+                  }}
+                />
+
+                {/* Glitch effect */}
+                <motion.div
+                  className="absolute inset-0 bg-primary-500/10"
+                  animate={{
+                    opacity: [0, 0.5, 0],
+                    x: [0, -5, 5, 0],
+                  }}
+                  transition={{
+                    duration: 0.2,
+                    repeat: Infinity,
+                    repeatDelay: 5,
+                  }}
+                />
+
+                {/* Content */}
+                <div className="relative z-10">
+                  {/* Floating Tech Icon */}
+                  <motion.div
+                    className="mx-auto w-20 h-20 mb-4 relative"
+                    animate={{
+                      y: [0, -10, 0],
+                      rotateZ: [0, 180, 360],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-primary-400 to-primary-600 rounded-xl"
+                      animate={{
+                        opacity: [0.5, 1, 0.5],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                      }}
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                      </svg>
+                    </div>
+                  </motion.div>
+
+                  {/* Holographic Text */}
+                  <motion.div
+                    className="text-center"
+                    animate={{
+                      textShadow: [
+                        '0 0 10px rgba(14, 165, 233, 0.5)',
+                        '0 0 20px rgba(14, 165, 233, 0.8)',
+                        '0 0 10px rgba(14, 165, 233, 0.5)',
+                      ],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                    }}
+                  >
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-primary-400 via-primary-300 to-primary-500 bg-clip-text text-transparent mb-2">
+                      Tech Innovator
+                    </h3>
+                    <p className="text-sm text-primary-600 dark:text-primary-300">
+                      Crafting the future with code
+                    </p>
+                  </motion.div>
+
+                  {/* Orbiting Particles */}
+                  {[...Array(6)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-2 h-2 bg-primary-400 rounded-full"
+                      style={{
+                        left: '50%',
+                        top: '50%',
+                      }}
+                      animate={{
+                        x: [
+                          Math.cos((i * Math.PI * 2) / 6) * 80,
+                          Math.cos((i * Math.PI * 2) / 6 + Math.PI) * 80,
+                          Math.cos((i * Math.PI * 2) / 6) * 80,
+                        ],
+                        y: [
+                          Math.sin((i * Math.PI * 2) / 6) * 80,
+                          Math.sin((i * Math.PI * 2) / 6 + Math.PI) * 80,
+                          Math.sin((i * Math.PI * 2) / 6) * 80,
+                        ],
+                        scale: [1, 1.5, 1],
+                        opacity: [0.3, 0.8, 0.3],
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: i * 0.2,
+                      }}
+                    />
+                  ))}
+
+                  {/* Data Stream Effect */}
+                  <motion.div
+                    className="absolute left-0 right-0 top-0 h-1 bg-gradient-to-r from-transparent via-primary-400 to-transparent"
+                    animate={{
+                      x: ['-100%', '200%'],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  />
+                </div>
+
+                {/* Corner accents */}
+                {[
+                  { top: 0, left: 0, rotate: 0 },
+                  { top: 0, right: 0, rotate: 90 },
+                  { bottom: 0, right: 0, rotate: 180 },
+                  { bottom: 0, left: 0, rotate: 270 },
+                ].map((pos, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-4 h-4"
+                    style={{ ...pos }}
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: [0.3, 1, 0.3],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      delay: i * 0.2,
+                    }}
+                  >
+                    <div
+                      className="w-full h-full border-t-2 border-l-2 border-primary-400"
+                      style={{ transform: `rotate(${pos.rotate}deg)` }}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {/* Outer glow rings */}
+              <motion.div
+                className="absolute inset-0 border-2 border-primary-400/20 rounded-2xl"
+                animate={{
+                  scale: [1, 1.05, 1],
+                  opacity: [0.5, 0.2, 0.5],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              <motion.div
+                className="absolute inset-0 border border-primary-500/30 rounded-2xl"
+                animate={{
+                  scale: [1, 1.1, 1],
+                  opacity: [0.3, 0, 0.3],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.5,
+                }}
+              />
             </motion.div>
           </motion.div>
         </motion.div>
