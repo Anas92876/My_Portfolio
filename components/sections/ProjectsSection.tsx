@@ -75,17 +75,17 @@ export default function ProjectsSection() {
             <Card>
               <div className="p-6">
                 {/* Project Icon/Image */}
-                <div className="w-full h-32 bg-gradient-to-br from-primary-100 to-primary-50 rounded-lg flex items-center justify-center mb-4">
+                <div className="w-full h-32 bg-gradient-to-br from-primary-100 to-primary-50 dark:from-primary-900/30 dark:to-primary-800/20 rounded-lg flex items-center justify-center mb-4">
                   <span className="text-6xl">{project.image}</span>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-neutral-900 mb-2">
+                <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-50 mb-2">
                   {project.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-neutral-600 mb-4 line-clamp-3">
+                <p className="text-neutral-600 dark:text-neutral-300 mb-4 line-clamp-3">
                   {project.description}
                 </p>
 
@@ -100,11 +100,11 @@ export default function ProjectsSection() {
 
                 {/* Features */}
                 <div className="mb-4">
-                  <p className="text-sm font-semibold text-neutral-700 mb-2">Key Features:</p>
-                  <ul className="text-sm text-neutral-600 space-y-1">
+                  <p className="text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-2">Key Features:</p>
+                  <ul className="text-sm text-neutral-600 dark:text-neutral-400 space-y-1">
                     {project.features.slice(0, 3).map((feature) => (
                       <li key={feature} className="flex items-center gap-2">
-                        <svg className="w-4 h-4 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 text-primary-600 dark:text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
                         <span>{feature}</span>
@@ -114,7 +114,7 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* Links */}
-                <div className="flex gap-3 pt-4 border-t border-neutral-100">
+                <div className="flex gap-3 pt-4 border-t border-neutral-100 dark:border-neutral-800">
                   <a
                     href={project.liveUrl}
                     target="_blank"
@@ -127,7 +127,7 @@ export default function ProjectsSection() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 text-center px-4 py-2 border-2 border-neutral-300 text-neutral-700 rounded-lg hover:border-neutral-400 hover:bg-neutral-50 transition-all duration-200 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500"
+                    className="flex-1 text-center px-4 py-2 border-2 border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg hover:border-neutral-400 dark:hover:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-all duration-200 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500"
                   >
                     GitHub
                   </a>

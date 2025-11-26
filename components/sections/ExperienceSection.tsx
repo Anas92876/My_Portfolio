@@ -72,40 +72,40 @@ export default function ExperienceSection() {
       <div className="max-w-5xl mx-auto">
         {/* Timeline */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-neutral-900 mb-8 text-center">Professional Experience</h3>
+          <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50 mb-8 text-center">Professional Experience</h3>
           <div className="space-y-8">
             {experiences.map((exp, index) => (
               <AnimateOnScroll key={index} delay={index * 100}>
-                <div className="relative pl-8 md:pl-12 border-l-2 border-primary-300">
+                <div className="relative pl-8 md:pl-12 border-l-2 border-primary-300 dark:border-primary-700">
                   {/* Timeline dot */}
-                  <div className="absolute -left-2 top-0 w-4 h-4 bg-primary-600 rounded-full"></div>
+                  <div className="absolute -left-2 top-0 w-4 h-4 bg-primary-600 dark:bg-primary-500 rounded-full"></div>
 
-                  <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <div className="bg-white dark:bg-[#1a1a1a] border border-neutral-100 dark:border-neutral-800 p-6 rounded-xl shadow-md dark:shadow-neutral-900/30 hover:shadow-lg dark:hover:shadow-primary-500/10 transition-shadow duration-300">
                     <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
                       <div>
-                        <h4 className="text-xl font-bold text-neutral-900">
+                        <h4 className="text-xl font-bold text-neutral-900 dark:text-neutral-50">
                           {exp.title}
                         </h4>
-                        <p className="text-primary-600 font-medium">
+                        <p className="text-primary-600 dark:text-primary-400 font-medium">
                           {exp.company}
                         </p>
                       </div>
-                      <span className="text-sm text-neutral-500 font-medium mt-2 md:mt-0">
+                      <span className="text-sm text-neutral-500 dark:text-neutral-400 font-medium mt-2 md:mt-0">
                         {exp.period}
                       </span>
                     </div>
 
-                    <p className="text-neutral-600 mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-300 mb-4">
                       {exp.description}
                     </p>
 
                     <div className="space-y-2">
                       {exp.achievements.map((achievement, i) => (
                         <div key={i} className="flex items-start gap-2">
-                          <svg className="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-5 h-5 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                          <span className="text-sm text-neutral-700">{achievement}</span>
+                          <span className="text-sm text-neutral-700 dark:text-neutral-300">{achievement}</span>
                         </div>
                       ))}
                     </div>
@@ -118,16 +118,16 @@ export default function ExperienceSection() {
 
         {/* Achievements Grid */}
         <div className="mb-20">
-          <h3 className="text-2xl font-bold text-neutral-900 mb-8 text-center">Notable Achievements</h3>
+          <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50 mb-8 text-center">Notable Achievements</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {achievements.map((achievement, index) => (
               <AnimateOnScroll key={index} delay={index * 100}>
-                <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 text-center">
+                <div className="bg-white dark:bg-[#1a1a1a] border border-neutral-100 dark:border-neutral-800 p-6 rounded-xl shadow-md dark:shadow-neutral-900/30 hover:shadow-lg dark:hover:shadow-primary-500/10 transition-all duration-300 text-center">
                   <div className="text-5xl mb-3">{achievement.icon}</div>
-                  <h4 className="text-lg font-bold text-neutral-900 mb-2">
+                  <h4 className="text-lg font-bold text-neutral-900 dark:text-neutral-50 mb-2">
                     {achievement.title}
                   </h4>
-                  <p className="text-neutral-600">
+                  <p className="text-neutral-600 dark:text-neutral-300">
                     {achievement.description}
                   </p>
                 </div>
@@ -138,7 +138,7 @@ export default function ExperienceSection() {
 
         {/* Certificates Section */}
         <div>
-          <h3 className="text-2xl font-bold text-neutral-900 mb-8 text-center">Certifications & Credentials</h3>
+          <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50 mb-8 text-center">Certifications & Credentials</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
@@ -191,7 +191,7 @@ export default function ExperienceSection() {
               },
             ].map((cert, index) => (
               <AnimateOnScroll key={index} delay={index * 100}>
-                <div className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-neutral-100 hover:border-transparent">
+                <div className="group relative bg-white dark:bg-[#1a1a1a] rounded-2xl overflow-hidden shadow-md dark:shadow-neutral-900/30 hover:shadow-2xl dark:hover:shadow-primary-500/10 transition-all duration-500 border border-neutral-100 dark:border-neutral-800 hover:border-transparent dark:hover:border-primary-500/30">
                   {/* Gradient Header */}
                   <div className={`h-2 bg-gradient-to-r ${cert.color}`} />
 
@@ -204,22 +204,22 @@ export default function ExperienceSection() {
                     </div>
 
                     {/* Certificate Info */}
-                    <h4 className="text-lg font-bold text-neutral-900 mb-2 leading-tight">
+                    <h4 className="text-lg font-bold text-neutral-900 dark:text-neutral-50 mb-2 leading-tight">
                       {cert.name}
                     </h4>
 
-                    <p className="text-sm text-neutral-600 mb-1 font-medium">
+                    <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-1 font-medium">
                       {cert.issuer}
                     </p>
 
-                    <p className="text-xs text-neutral-500 mb-4">
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-4">
                       Issued: {cert.date}
                     </p>
 
                     {/* Credential ID */}
-                    <div className="bg-neutral-50 rounded-lg px-3 py-2 mb-4">
-                      <p className="text-xs text-neutral-500 mb-1">Credential ID</p>
-                      <p className="text-sm font-mono text-neutral-700 font-medium">
+                    <div className="bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 rounded-lg px-3 py-2 mb-4">
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">Credential ID</p>
+                      <p className="text-sm font-mono text-neutral-700 dark:text-neutral-300 font-medium">
                         {cert.credential}
                       </p>
                     </div>
@@ -236,7 +236,7 @@ export default function ExperienceSection() {
                   </div>
 
                   {/* Verified Badge */}
-                  <div className="absolute top-4 right-4 bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                  <div className="absolute top-4 right-4 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1 border border-green-200 dark:border-green-700">
                     <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>

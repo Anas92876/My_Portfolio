@@ -41,8 +41,8 @@ export default function SkillsSection() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {skillCategories.map((category, index) => (
           <AnimateOnScroll key={category.title} delay={index * 100}>
-            <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
-              <h3 className="text-xl font-bold text-neutral-900 mb-4 pb-3 border-b-2 border-primary-200">
+            <div className="bg-white dark:bg-[#1a1a1a] border border-neutral-100 dark:border-neutral-800 p-6 rounded-xl shadow-md dark:shadow-neutral-900/30 hover:shadow-lg dark:hover:shadow-primary-500/10 transition-all duration-300">
+              <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-50 mb-4 pb-3 border-b-2 border-primary-200 dark:border-primary-700">
                 {category.title}
               </h3>
               <div className="flex flex-wrap gap-2">
