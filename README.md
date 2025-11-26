@@ -1,4 +1,6 @@
-# Portfolio Website
+# My_Portfolio
+
+This is my portfolio that summarizes my experience in web development and other techniques.
 
 A premium, high-performance personal portfolio website built with Next.js, TypeScript, and Tailwind CSS. Designed to achieve 95+ Lighthouse scores across all categories while providing a smooth, modern user experience.
 
