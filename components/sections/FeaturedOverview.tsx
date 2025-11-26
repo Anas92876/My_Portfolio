@@ -54,7 +54,7 @@ export default function FeaturedOverview() {
               Building Digital Excellence
             </h2>
             <p className="text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed mb-8">
-              I'm a passionate full-stack developer specializing in creating high-performance
+              I&apos;m a passionate full-stack developer specializing in creating high-performance
               web applications, automation systems, and IoT solutions. With a strong foundation
               in modern technologies and a commitment to excellence, I turn complex challenges
               into elegant solutions.
@@ -144,10 +144,10 @@ export default function FeaturedOverview() {
         <AnimateOnScroll delay={700}>
           <div className="bg-gradient-to-br from-primary-600 to-primary-500 rounded-3xl p-8 md:p-12 text-center text-white">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Let's Work Together
+              Let&apos;s Work Together
             </h2>
             <p className="text-lg md:text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-              Have a project in mind? I'd love to help bring your ideas to life with
+              Have a project in mind? I&apos;d love to help bring your ideas to life with
               cutting-edge technology and expert development.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
