@@ -22,7 +22,7 @@ export default function HeroSection() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1], // Custom easing for smooth animation
+        ease: [0.22, 1, 0.36, 1] as const, // Custom easing for smooth animation
       },
     },
   }
@@ -34,7 +34,7 @@ export default function HeroSection() {
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
     hover: {
@@ -56,7 +56,7 @@ export default function HeroSection() {
       transition: {
         duration: 0.5,
         delay: 0.8 + i * 0.1,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     }),
   }
@@ -69,7 +69,7 @@ export default function HeroSection() {
       transition: {
         duration: 0.8,
         delay: 0.3,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   }
@@ -91,7 +91,7 @@ export default function HeroSection() {
               className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-neutral-900 dark:text-neutral-50 mb-6 leading-tight"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
             >
               Full-Stack Developer &{' '}
               <motion.span
