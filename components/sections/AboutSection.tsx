@@ -51,16 +51,16 @@ export default function AboutSection() {
 
       <div className="max-w-4xl mx-auto">
         <AnimateOnScroll>
-          <div className="bg-gradient-to-br from-primary-50 to-white p-8 md:p-12 rounded-2xl shadow-lg mb-12">
-            <p className="text-lg md:text-xl text-neutral-700 leading-relaxed mb-6">
-              Hi! I&apos;m a <strong className="text-primary-600">Full-Stack Developer</strong> with
+          <div className="bg-gradient-to-br from-primary-50 to-white dark:from-primary-900/20 dark:to-[#1a1a1a] border border-primary-100 dark:border-primary-800/30 p-8 md:p-12 rounded-2xl shadow-lg dark:shadow-neutral-900/30 mb-12">
+            <p className="text-lg md:text-xl text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
+              Hi! I&apos;m a <strong className="text-primary-600 dark:text-primary-400">Full-Stack Developer</strong> with
               a passion for building efficient, scalable web applications and automation solutions.
               My journey started in robotics and IoT, which gave me a unique perspective on
               problem-solving and system integration.
             </p>
-            <p className="text-lg md:text-xl text-neutral-700 leading-relaxed">
+            <p className="text-lg md:text-xl text-neutral-700 dark:text-neutral-300 leading-relaxed">
               Today, I specialize in creating high-performance web experiences using modern
-              technologies like <strong className="text-primary-600">React, Next.js, Node.js</strong>,
+              technologies like <strong className="text-primary-600 dark:text-primary-400">React, Next.js, Node.js</strong>,
               and various automation frameworks. My mission is to transform complex challenges
               into elegant, user-friendly solutions that drive real business value.
             </p>
@@ -70,16 +70,16 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {highlights.map((highlight, index) => (
             <AnimateOnScroll key={index} delay={index * 100}>
-              <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-neutral-100">
+              <div className="bg-white dark:bg-[#1a1a1a] p-6 rounded-xl shadow-md dark:shadow-neutral-900/30 hover:shadow-lg dark:hover:shadow-primary-500/10 transition-shadow duration-300 border border-neutral-100 dark:border-neutral-800">
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center">
+                  <div className="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-lg flex items-center justify-center">
                     {highlight.icon}
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-neutral-900 mb-2">
+                    <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50 mb-2">
                       {highlight.title}
                     </h3>
-                    <p className="text-neutral-600">
+                    <p className="text-neutral-600 dark:text-neutral-300">
                       {highlight.description}
                     </p>
                   </div>

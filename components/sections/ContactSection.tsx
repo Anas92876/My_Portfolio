@@ -82,10 +82,10 @@ export default function ContactSection() {
           {/* Contact Info */}
           <AnimateOnScroll>
             <div>
-              <h3 className="text-2xl font-bold text-neutral-900 mb-6">
+              <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50 mb-6">
                 Contact Information
               </h3>
-              <p className="text-neutral-600 mb-8">
+              <p className="text-neutral-600 dark:text-neutral-300 mb-8">
                 Feel free to reach out through any of these channels. I&apos;m always open
                 to discussing new projects, creative ideas, or opportunities to be part
                 of your vision.
@@ -98,22 +98,22 @@ export default function ContactSection() {
                     href={info.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 bg-white rounded-lg hover:shadow-md transition-shadow duration-200 group"
+                    className="flex items-center gap-4 p-4 bg-white dark:bg-[#1a1a1a] border border-neutral-100 dark:border-neutral-800 rounded-lg hover:shadow-md dark:hover:shadow-primary-500/10 transition-shadow duration-200 group"
                   >
-                    <div className="w-12 h-12 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-colors duration-200">
+                    <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-lg flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-colors duration-200">
                       {info.icon}
                     </div>
                     <div>
-                      <p className="text-sm text-neutral-500">{info.label}</p>
-                      <p className="text-neutral-900 font-medium">{info.value}</p>
+                      <p className="text-sm text-neutral-500 dark:text-neutral-400">{info.label}</p>
+                      <p className="text-neutral-900 dark:text-neutral-50 font-medium">{info.value}</p>
                     </div>
                   </a>
                 ))}
               </div>
 
-              <div className="mt-8 p-6 bg-primary-50 rounded-lg">
-                <h4 className="font-semibold text-neutral-900 mb-2">Available for:</h4>
-                <ul className="space-y-2 text-neutral-700">
+              <div className="mt-8 p-6 bg-primary-50 dark:bg-primary-900/20 border border-primary-100 dark:border-primary-800/30 rounded-lg">
+                <h4 className="font-semibold text-neutral-900 dark:text-neutral-50 mb-2">Available for:</h4>
+                <ul className="space-y-2 text-neutral-700 dark:text-neutral-300">
                   <li className="flex items-center gap-2">
                     <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -139,13 +139,13 @@ export default function ContactSection() {
 
           {/* Contact Form */}
           <AnimateOnScroll delay={200}>
-            <div className="bg-white p-8 rounded-xl shadow-md">
-              <h3 className="text-2xl font-bold text-neutral-900 mb-6">
+            <div className="bg-white dark:bg-[#1a1a1a] border border-neutral-100 dark:border-neutral-800 p-8 rounded-xl shadow-md dark:shadow-neutral-900/30">
+              <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50 mb-6">
                 Send a Message
               </h3>
 
               {formStatus === 'success' && (
-                <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
+                <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg text-green-800 dark:text-green-300">
                   <p className="font-medium">Message sent successfully!</p>
                   <p className="text-sm">I&apos;ll get back to you as soon as possible.</p>
                 </div>
@@ -153,7 +153,7 @@ export default function ContactSection() {
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                     Name *
                   </label>
                   <input
@@ -163,13 +163,13 @@ export default function ContactSection() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900/50 text-neutral-900 dark:text-neutral-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
                     placeholder="Your name"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                     Email *
                   </label>
                   <input
@@ -179,13 +179,13 @@ export default function ContactSection() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900/50 text-neutral-900 dark:text-neutral-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
                     placeholder="your.email@example.com"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-neutral-700 mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                     Subject *
                   </label>
                   <input
@@ -195,13 +195,13 @@ export default function ContactSection() {
                     required
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900/50 text-neutral-900 dark:text-neutral-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
                     placeholder="What's this about?"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                     Message *
                   </label>
                   <textarea
@@ -211,7 +211,7 @@ export default function ContactSection() {
                     value={formData.message}
                     onChange={handleChange}
                     rows={5}
-                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none"
+                    className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900/50 text-neutral-900 dark:text-neutral-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
                     placeholder="Tell me about your project or inquiry..."
                   />
                 </div>
