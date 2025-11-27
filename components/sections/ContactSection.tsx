@@ -14,20 +14,46 @@ export default function ContactSection() {
     message: ''
   })
 
-  const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    // Since this is frontend only, we'll just show a success message
-    // In a real app, you'd send this to an API endpoint
-    console.log('Form data:', formData)
-    setFormStatus('success')
+    setFormStatus('sending')
+    setErrorMessage('')
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setFormData({ name: '', email: '', subject: '', message: '' })
-      setFormStatus('idle')
-    }, 3000)
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send email')
+      }
+
+      setFormStatus('success')
+
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setFormData({ name: '', email: '', subject: '', message: '' })
+        setFormStatus('idle')
+      }, 3000)
+    } catch (error) {
+      setFormStatus('error')
+      setErrorMessage(error instanceof Error ? error.message : 'An error occurred')
+
+      // Clear error after 5 seconds
+      setTimeout(() => {
+        setFormStatus('idle')
+        setErrorMessage('')
+      }, 5000)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -151,6 +177,13 @@ export default function ContactSection() {
                 </div>
               )}
 
+              {formStatus === 'error' && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
+                  <p className="font-medium">Failed to send message</p>
+                  <p className="text-sm">{errorMessage || 'Please try again later.'}</p>
+                </div>
+              )}
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
@@ -216,8 +249,13 @@ export default function ContactSection() {
                   />
                 </div>
 
-                <Button type="submit" className="w-full" size="lg">
-                  Send Message
+                <Button
+                  type="submit"
+                  className="w-full"
+                  size="lg"
+                  disabled={formStatus === 'sending'}
+                >
+                  {formStatus === 'sending' ? 'Sending...' : 'Send Message'}
                 </Button>
               </form>
             </div>
