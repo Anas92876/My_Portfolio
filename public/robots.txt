@@ -1,6 +1,19 @@
-# Allow all crawlers
+# Allow all search engines to crawl the site
 User-agent: *
 Allow: /
 
-# Sitemap location
+# Disallow crawling of API routes
+Disallow: /api/
+
+# Googlebot specific settings
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bingbot specific settings
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+# Sitemap location (used by search engines to discover all pages)
 Sitemap: https://yourportfolio.com/sitemap.xml
