@@ -45,8 +45,8 @@ export default function ContactSection() {
         </svg>
       ),
       label: 'Email',
-      value: 'your.email@example.com',
-      href: 'mailto:your.email@example.com'
+      value: 'mhab36817@gmail.com',
+      href: 'https://mail.google.com/mail/u/0/#inbox?compose=new&to=mhab36817@gmail.com'
     },
     {
       icon: (
@@ -55,8 +55,8 @@ export default function ContactSection() {
         </svg>
       ),
       label: 'LinkedIn',
-      value: 'linkedin.com/in/yourprofile',
-      href: 'https://linkedin.com/in/yourprofile'
+      value: 'https://www.linkedin.com/in/anas92876',
+      href: 'https://www.linkedin.com/in/anas92876'
     },
     {
       icon: (
@@ -65,8 +65,8 @@ export default function ContactSection() {
         </svg>
       ),
       label: 'GitHub',
-      value: 'github.com/yourusername',
-      href: 'https://github.com/yourusername'
+      value: 'https://github.com/Anas92876',
+      href: 'https://github.com/Anas92876'
     }
   ]
 
