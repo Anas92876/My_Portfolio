@@ -1,15 +1,15 @@
 // Site configuration
 export const SITE_CONFIG = {
-  name: 'Your Name',
+  name: 'Anas Jihad AlHomsee',
   title: 'Portfolio | Full-Stack Developer & Automation Specialist',
   description: 'Portfolio of a Full-Stack Developer specializing in web development, automation, robotics, and IoT solutions.',
   url: 'https://yourportfolio.com',
   ogImage: 'https://yourportfolio.com/og-image.jpg',
   links: {
-    github: 'https://github.com/yourusername',
-    linkedin: 'https://linkedin.com/in/yourusername',
+    github: 'https://github.com/Anas92876',
+    linkedin: 'https://www.linkedin.com/in/anas92876/',
     twitter: 'https://twitter.com/yourusername',
-    email: 'mailto:your.email@example.com',
+    email: 'mhab36817@gmail.com',
   },
 }
 
