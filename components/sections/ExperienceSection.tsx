@@ -191,11 +191,11 @@ export default function ExperienceSection() {
               },
             ].map((cert, index) => (
               <AnimateOnScroll key={index} delay={index * 100}>
-                <div className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-neutral-100 hover:border-transparent">
+                <div className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-neutral-100 hover:border-transparent h-full flex flex-col">
                   {/* Gradient Header */}
                   <div className={`h-2 bg-gradient-to-r ${cert.color}`} />
 
-                  <div className="p-6">
+                  <div className="p-6 flex flex-col flex-1">
                     {/* Certificate Icon */}
                     <div className={`w-16 h-16 bg-gradient-to-br ${cert.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                       <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -217,7 +217,7 @@ export default function ExperienceSection() {
                     </p>
 
                     {/* Credential ID */}
-                    <div className="bg-neutral-50 rounded-lg px-3 py-2 mb-4">
+                    <div className="bg-neutral-50 rounded-lg px-3 py-2 mb-4 flex-1">
                       <p className="text-xs text-neutral-500 mb-1">Credential ID</p>
                       <p className="text-sm font-mono text-neutral-700 font-medium">
                         {cert.credential}

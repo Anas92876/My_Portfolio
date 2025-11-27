@@ -72,8 +72,8 @@ export default function ProjectsSection() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => (
           <AnimateOnScroll key={project.title} delay={index * 100}>
-            <Card>
-              <div className="p-6">
+            <Card className="h-full">
+              <div className="p-6 h-full flex flex-col">
                 {/* Project Icon/Image */}
                 <div className="w-full h-32 bg-gradient-to-br from-primary-100 to-primary-50 rounded-lg flex items-center justify-center mb-4">
                   <span className="text-6xl">{project.image}</span>
@@ -99,7 +99,7 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* Features */}
-                <div className="mb-4">
+                <div className="mb-4 flex-1">
                   <p className="text-sm font-semibold text-neutral-700 mb-2">Key Features:</p>
                   <ul className="text-sm text-neutral-600 space-y-1">
                     {project.features.slice(0, 3).map((feature) => (
