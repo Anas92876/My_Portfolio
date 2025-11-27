@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   keywords: ['web developer', 'full-stack developer', 'automation', 'robotics', 'IoT', 'portfolio'],
   authors: [{ name: 'Your Name' }],
   creator: 'Your Name',
+  metadataBase: new URL('https://yourportfolio.com'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     siteName: 'Portfolio',
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     title: 'Portfolio | Full-Stack Developer',
     description: 'Portfolio showcasing web development, automation, and robotics projects.',
   },

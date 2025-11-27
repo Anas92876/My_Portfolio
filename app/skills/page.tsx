@@ -3,6 +3,15 @@ import SkillsSection from '@/components/sections/SkillsSection'
 export const metadata = {
   title: 'Skills | Portfolio',
   description: 'Explore my technical skills and expertise across frontend, backend, DevOps, and automation technologies.',
+  openGraph: {
+    title: 'Skills | Portfolio',
+    description: 'Explore my technical skills and expertise across frontend, backend, DevOps, and automation technologies.',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Skills | Portfolio',
+    description: 'Explore my technical skills and expertise across frontend, backend, DevOps, and automation technologies.',
+  },
 }
 
 export default function SkillsPage() {

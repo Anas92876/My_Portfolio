@@ -3,6 +3,15 @@ import ProjectsSection from '@/components/sections/ProjectsSection'
 export const metadata = {
   title: 'Projects | Portfolio',
   description: 'View my portfolio of web development, automation, and IoT projects with live demos and source code.',
+  openGraph: {
+    title: 'Projects | Portfolio',
+    description: 'View my portfolio of web development, automation, and IoT projects with live demos and source code.',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Projects | Portfolio',
+    description: 'View my portfolio of web development, automation, and IoT projects with live demos and source code.',
+  },
 }
 
 export default function ProjectsPage() {

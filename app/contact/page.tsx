@@ -3,6 +3,15 @@ import ContactSection from '@/components/sections/ContactSection'
 export const metadata = {
   title: 'Contact | Portfolio',
   description: 'Get in touch for project inquiries, collaborations, or just to say hello.',
+  openGraph: {
+    title: 'Contact | Portfolio',
+    description: 'Get in touch for project inquiries, collaborations, or just to say hello.',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Contact | Portfolio',
+    description: 'Get in touch for project inquiries, collaborations, or just to say hello.',
+  },
 }
 
 export default function ContactPage() {
