@@ -72,10 +72,10 @@ export default function Navbar() {
           willChange: isScrolled ? 'auto' : 'transform',
         }}
       >
-        <nav className={`transition-all duration-500 ease-out ${
+        <nav className={`transition-all duration-500 ease-out border ${
           isScrolled
-            ? 'mx-4 md:mx-12 lg:mx-24 xl:mx-32 bg-white/95 dark:bg-[#1a1a1a]/95 backdrop-blur-md shadow-2xl dark:shadow-primary-500/10 rounded-full py-3 px-6 md:px-8 border border-neutral-200/50 dark:border-neutral-800'
-            : 'bg-transparent py-5 px-4'
+            ? 'mx-4 md:mx-12 lg:mx-24 xl:mx-32 bg-white/95 dark:bg-[#1a1a1a]/95 backdrop-blur-md shadow-2xl dark:shadow-primary-500/10 rounded-full py-3 px-6 md:px-8 border-neutral-200/50 dark:border-neutral-800'
+            : 'bg-transparent py-5 px-4 border-transparent'
         }`}>
           <div className="flex items-center justify-between max-w-7xl mx-auto">
             {/* Logo */}
