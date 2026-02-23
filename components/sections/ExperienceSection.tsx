@@ -1,8 +1,19 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Section from '@/components/Section'
 import SectionTitle from '@/components/SectionTitle'
 import AnimateOnScroll from '@/components/AnimateOnScroll'
+import MagicBento from '@/components/MagicBento'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function ExperienceSection() {
+  const timelineRef = useRef<HTMLDivElement>(null)
+  const achievementsRef = useRef<HTMLDivElement>(null)
+
   const experiences = [
     {
       title: 'Senior Full-Stack Developer',
@@ -62,6 +73,102 @@ export default function ExperienceSection() {
     }
   ]
 
+  useEffect(() => {
+    const mm = gsap.matchMedia()
+
+    mm.add('(prefers-reduced-motion: no-preference)', () => {
+      /* ── Timeline items ── */
+      const timelineItems = timelineRef.current?.querySelectorAll<HTMLElement>('.timeline-item')
+      const timelineDots  = timelineRef.current?.querySelectorAll<HTMLElement>('.timeline-dot')
+
+      if (timelineItems?.length) gsap.set(timelineItems, { x: -60, opacity: 0 })
+      if (timelineDots?.length)  gsap.set(timelineDots,  { scale: 0, opacity: 0 })
+
+      timelineItems?.forEach((item) => {
+        const dot = item.querySelector<HTMLElement>('.timeline-dot')
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 82%',
+            toggleActions: 'play none none none',
+          },
+        })
+
+        // Dot pops in first with a hard bounce
+        if (dot) {
+          tl.to(dot, {
+            scale: 1,
+            opacity: 1,
+            duration: 0.35,
+            ease: 'back.out(3)',
+          })
+        }
+
+        // Card slides in from the left, overlapping dot animation
+        tl.to(
+          item,
+          { x: 0, opacity: 1, duration: 0.7, ease: 'power3.out' },
+          dot ? '-=0.2' : 0
+        )
+      })
+
+      /* ── Achievement cards ── */
+      const achieveCards = achievementsRef.current?.querySelectorAll<HTMLElement>('.achievement-card')
+
+      if (achieveCards?.length) {
+        gsap.set(achieveCards, { y: 50, opacity: 0, scale: 0.93 })
+      }
+
+      achieveCards?.forEach((card, i) => {
+        const isLeft  = i % 2 === 0
+        const icon = card.querySelector<HTMLElement>('.achievement-icon')
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 87%',
+            toggleActions: 'play none none none',
+          },
+          delay: (i % 2) * 0.09,
+        })
+
+        // Card rises with a slight directional lean
+        tl.fromTo(
+          card,
+          {
+            x: isLeft ? -30 : 30,
+            y: 50,
+            opacity: 0,
+            scale: 0.93,
+            rotation: isLeft ? -1.5 : 1.5,
+          },
+          {
+            x: 0,
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            rotation: 0,
+            duration: 0.65,
+            ease: 'power3.out',
+          }
+        )
+
+        // Icon pops in after card arrives
+        if (icon) {
+          tl.fromTo(
+            icon,
+            { scale: 0, rotation: -20 },
+            { scale: 1, rotation: 0, duration: 0.4, ease: 'back.out(2.5)' },
+            '-=0.25'
+          )
+        }
+      })
+    })
+
+    return () => mm.revert()
+  }, [])
+
   return (
     <Section id="experience" background="gray">
       <SectionTitle
@@ -70,183 +177,174 @@ export default function ExperienceSection() {
       />
 
       <div className="max-w-5xl mx-auto">
-        {/* Timeline */}
+
+        {/* ── Professional Experience Timeline ── */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-8 text-center">Professional Experience</h3>
-          <div className="space-y-8">
+          <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-8 text-center">
+            Professional Experience
+          </h3>
+
+          <div className="space-y-8" ref={timelineRef}>
             {experiences.map((exp, index) => (
-              <AnimateOnScroll key={index} delay={index * 100}>
-                <div className="relative pl-8 md:pl-12 border-l-2 border-primary-300">
-                  {/* Timeline dot */}
-                  <div className="absolute -left-2 top-0 w-4 h-4 bg-primary-600 rounded-full"></div>
+              <div
+                key={index}
+                className="timeline-item relative pl-8 md:pl-12 border-l-2 border-primary-300 dark:border-primary-700"
+              >
+                {/* Animated dot */}
+                <div className="timeline-dot absolute -left-2 top-0 w-4 h-4 bg-primary-600 dark:bg-primary-500 rounded-full shadow-md shadow-primary-600/40" />
 
-                  <div className="bg-white dark:bg-neutral-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
-                      <div>
-                        <h4 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
-                          {exp.title}
-                        </h4>
-                        <p className="text-primary-600 dark:text-primary-400 font-medium">
-                          {exp.company}
-                        </p>
-                      </div>
-                      <span className="text-sm text-neutral-500 dark:text-neutral-400 font-medium mt-2 md:mt-0">
-                        {exp.period}
-                      </span>
-                    </div>
-
-                    <p className="text-neutral-600 dark:text-neutral-400 mb-4">
-                      {exp.description}
-                    </p>
-
-                    <div className="space-y-2">
-                      {exp.achievements.map((achievement, i) => (
-                        <div key={i} className="flex items-start gap-2">
-                          <svg className="w-5 h-5 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          <span className="text-sm text-neutral-700 dark:text-neutral-300">{achievement}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </AnimateOnScroll>
-            ))}
-          </div>
-        </div>
-
-        {/* Achievements Grid */}
-        <div className="mb-20">
-          <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-8 text-center">Notable Achievements</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {achievements.map((achievement, index) => (
-              <AnimateOnScroll key={index} delay={index * 100}>
-                <div className="bg-white dark:bg-neutral-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 text-center">
-                  <div className="text-5xl mb-3">{achievement.icon}</div>
-                  <h4 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-2">
-                    {achievement.title}
-                  </h4>
-                  <p className="text-neutral-600 dark:text-neutral-400">
-                    {achievement.description}
-                  </p>
-                </div>
-              </AnimateOnScroll>
-            ))}
-          </div>
-        </div>
-
-        {/* Certificates Section */}
-        <div>
-          <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-8 text-center">Certifications & Credentials</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                name: 'AWS Certified Solutions Architect',
-                issuer: 'Amazon Web Services',
-                date: '2023',
-                credential: 'ABC123456',
-                verifyUrl: '#',
-                color: 'from-orange-500 to-orange-600'
-              },
-              {
-                name: 'Professional Scrum Master I',
-                issuer: 'Scrum.org',
-                date: '2022',
-                credential: 'PSM123456',
-                verifyUrl: '#',
-                color: 'from-blue-500 to-blue-600'
-              },
-              {
-                name: 'Meta Front-End Developer',
-                issuer: 'Meta (Facebook)',
-                date: '2023',
-                credential: 'META123456',
-                verifyUrl: '#',
-                color: 'from-blue-600 to-indigo-600'
-              },
-              {
-                name: 'Google Cloud Professional',
-                issuer: 'Google Cloud',
-                date: '2023',
-                credential: 'GCP123456',
-                verifyUrl: '#',
-                color: 'from-red-500 to-yellow-500'
-              },
-              {
-                name: 'MongoDB Certified Developer',
-                issuer: 'MongoDB University',
-                date: '2022',
-                credential: 'MDB123456',
-                verifyUrl: '#',
-                color: 'from-green-600 to-green-700'
-              },
-              {
-                name: 'Certified Kubernetes Admin',
-                issuer: 'Cloud Native Computing',
-                date: '2023',
-                credential: 'CKA123456',
-                verifyUrl: '#',
-                color: 'from-blue-700 to-purple-700'
-              },
-            ].map((cert, index) => (
-              <AnimateOnScroll key={index} delay={index * 100}>
-                <div className="group relative bg-white dark:bg-neutral-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-neutral-100 dark:border-neutral-700 hover:border-transparent h-full flex flex-col">
-                  {/* Gradient Header */}
-                  <div className={`h-2 bg-gradient-to-r ${cert.color}`} />
-
-                  <div className="p-6 flex flex-col flex-1">
-                    {/* Certificate Icon */}
-                    <div className={`w-16 h-16 bg-gradient-to-br ${cert.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                      </svg>
-                    </div>
-
-                    {/* Certificate Info */}
-                    <h4 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-2 leading-tight">
-                      {cert.name}
-                    </h4>
-
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-1 font-medium">
-                      {cert.issuer}
-                    </p>
-
-                    <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-4">
-                      Issued: {cert.date}
-                    </p>
-
-                    {/* Credential ID */}
-                    <div className="bg-neutral-50 dark:bg-neutral-700 rounded-lg px-3 py-2 mb-4 flex-1">
-                      <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-1">Credential ID</p>
-                      <p className="text-sm font-mono text-neutral-700 dark:text-neutral-300 font-medium">
-                        {cert.credential}
+                <div className="bg-white dark:bg-neutral-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+                    <div>
+                      <h4 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
+                        {exp.title}
+                      </h4>
+                      <p className="text-primary-600 dark:text-primary-400 font-medium">
+                        {exp.company}
                       </p>
                     </div>
-
-                    {/* Verify Button */}
-                    <a
-                      href={cert.verifyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`block w-full text-center bg-gradient-to-r ${cert.color} text-white px-4 py-2.5 rounded-lg font-medium hover:shadow-lg transition-all duration-200 text-sm group-hover:scale-105`}
-                    >
-                      Verify Certificate →
-                    </a>
+                    <span className="text-sm text-neutral-500 dark:text-neutral-400 font-medium mt-2 md:mt-0 md:bg-neutral-100 md:dark:bg-neutral-700 md:px-3 md:py-1 md:rounded-full">
+                      {exp.period}
+                    </span>
                   </div>
 
-                  {/* Verified Badge */}
-                  <div className="absolute top-4 right-4 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-400 px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    Verified
+                  <p className="text-neutral-600 dark:text-neutral-400 mb-4">
+                    {exp.description}
+                  </p>
+
+                  <div className="space-y-2">
+                    {exp.achievements.map((achievement, i) => (
+                      <div key={i} className="flex items-start gap-2">
+                        <svg
+                          className="w-5 h-5 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-0.5"
+                          fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span className="text-sm text-neutral-700 dark:text-neutral-300">{achievement}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </AnimateOnScroll>
+              </div>
             ))}
           </div>
         </div>
+
+        {/* ── Notable Achievements Grid ── */}
+        <div className="mb-20">
+          <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-8 text-center">
+            Notable Achievements
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6" ref={achievementsRef}>
+            {achievements.map((achievement, index) => (
+              <div
+                key={index}
+                className="achievement-card bg-white dark:bg-neutral-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 text-center"
+              >
+                <div className="achievement-icon text-5xl mb-3 inline-block">
+                  {achievement.icon}
+                </div>
+                <h4 className="text-lg font-bold text-neutral-900 dark:text-neutral-100 mb-2">
+                  {achievement.title}
+                </h4>
+                <p className="text-neutral-600 dark:text-neutral-400">
+                  {achievement.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Certifications ── */}
+        <div>
+          <h3 className="text-2xl font-bold text-neutral-900 dark:text-neutral-100 mb-8 text-center">
+            Certifications & Credentials
+          </h3>
+          <AnimateOnScroll>
+            <MagicBento
+              glowColor="14, 165, 233"
+              enableStars={true}
+              enableSpotlight={true}
+              enableBorderGlow={true}
+              enableTilt={false}
+              enableMagnetism={true}
+              clickEffect={true}
+              particleCount={10}
+              spotlightRadius={320}
+              cards={[
+                {
+                  label: 'Cloud Architecture · 2023',
+                  title: 'AWS Certified Solutions Architect',
+                  description: 'Amazon Web Services',
+                  date: '2023',
+                  credential: 'ABC123456',
+                  verifyUrl: '#',
+                  gradFrom: '#f97316',
+                  gradTo: '#f59e0b',
+                  skills: ['EC2 & S3 Design', 'VPC & IAM Security', 'High Availability'],
+                },
+                {
+                  label: 'Cloud Platform · 2023',
+                  title: 'Google Cloud Professional',
+                  description: 'Google Cloud',
+                  date: '2023',
+                  credential: 'GCP123456',
+                  verifyUrl: '#',
+                  gradFrom: '#0ea5e9',
+                  gradTo: '#06b6d4',
+                  skills: ['BigQuery Analytics', 'GKE Clusters', 'Cloud Run'],
+                },
+                {
+                  label: 'Frontend Development · 2023',
+                  title: 'Meta Front-End Developer',
+                  description: 'Meta (Facebook)',
+                  date: '2023',
+                  credential: 'META123456',
+                  verifyUrl: '#',
+                  gradFrom: '#3b82f6',
+                  gradTo: '#6366f1',
+                  skills: ['React.js', 'JavaScript ES6+', 'Responsive Design'],
+                },
+                {
+                  label: 'Agile & Scrum · 2022',
+                  title: 'Professional Scrum Master I',
+                  description: 'Scrum.org',
+                  date: '2022',
+                  credential: 'PSM123456',
+                  verifyUrl: '#',
+                  gradFrom: '#0ea5e9',
+                  gradTo: '#0284c7',
+                  skills: ['Sprint Planning', 'Backlog Refinement', 'Team Facilitation'],
+                },
+                {
+                  label: 'Database · 2022',
+                  title: 'MongoDB Certified Developer',
+                  description: 'MongoDB University',
+                  date: '2022',
+                  credential: 'MDB123456',
+                  verifyUrl: '#',
+                  gradFrom: '#10b981',
+                  gradTo: '#059669',
+                  skills: ['Aggregation Pipeline', 'Atlas Cloud', 'Indexing Strategies'],
+                },
+                {
+                  label: 'DevOps · 2023',
+                  title: 'Certified Kubernetes Administrator',
+                  description: 'Cloud Native Computing Foundation',
+                  date: '2023',
+                  credential: 'CKA123456',
+                  verifyUrl: '#',
+                  gradFrom: '#8b5cf6',
+                  gradTo: '#6366f1',
+                  skills: ['Pod Scheduling', 'RBAC & Security', 'Cluster Setup'],
+                },
+              ]}
+            />
+          </AnimateOnScroll>
+        </div>
+
       </div>
     </Section>
   )

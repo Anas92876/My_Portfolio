@@ -11,7 +11,15 @@
       "WebFetch(domain:www.reactbits.dev)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:api.github.com)"
+      "WebFetch(domain:api.github.com)",
+      "Bash(cd \"C:\\\\Users\\\\User\\\\OneDrive\\\\Desktop\\\\Projects\\\\my portfolio\" && npx shadcn@latest add @react-bits/MagicBento-JS-TW 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\User\\\\OneDrive\\\\Desktop\\\\Projects\\\\my portfolio\" && echo \"y\" | npx shadcn@latest add @react-bits/MagicBento-JS-TW 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\User\\\\OneDrive\\\\Desktop\\\\Projects\\\\my portfolio\" && printf \"y\\\\n\\\\n\" | npx shadcn@latest add @react-bits/MagicBento-JS-TW 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\User\\\\OneDrive\\\\Desktop\\\\Projects\\\\my portfolio\" && npx shadcn@latest add @react-bits/MagicBento-JS-TW --yes 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\User\\\\OneDrive\\\\Desktop\\\\Projects\\\\my portfolio\" && npx shadcn@latest init --defaults 2>&1 && npx shadcn@latest add @react-bits/MagicBento-JS-TW --yes 2>&1)",
+      "Bash(echo gsap OK:*)",
+      "Bash(cd C:\\\\Users\\\\User\\\\OneDrive\\\\Desktop\\\\Projects\\\\my portfolio:*)",
+      "Bash(cd \"C:\\\\Users\\\\User\\\\OneDrive\\\\Desktop\\\\Projects\\\\my portfolio\" && node -e \"require\\('gsap/ScrollTrigger'\\); console.log\\('ScrollTrigger OK'\\)\" 2>&1)"
     ],
     "deny": [],
     "ask": []
